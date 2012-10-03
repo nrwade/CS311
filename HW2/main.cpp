@@ -19,12 +19,27 @@ int main() {
 
 	KSArray<char> ia5 = KSArray<char>('l', 4);
 
-	cout<< "the size of array ia5 is "<<ia5.size() << endl;
+	KSArray<int> ia6 = KSArray<int>();
+
+	/*cout<< "the size of array ia5 is "<<ia5.size() << endl;
 
 	cout<< "the first element of ia5 is " << *ia5.begin() <<endl;
 
-	
+	cout<< "the location of one past the end of ia5 is " << ia5.end() << endl;*/
 
+	//cout << "the second element in ia5 is " << ia5[1] << endl;
+	/*cout << "size of ia " << ia.size() << endl;
+	cout << "size of ia6 " << ia6.size()<< endl;
+	cout << "size of ia4 " << ia4.size()<<endl;*/
+	if (ia6==ia2)
+	{
+		cout << "they are equal" << endl;
+	}
+
+	else 
+	{
+		cout << "not equal" << endl;
+	}
 
 	return 0;
 }
