@@ -18,7 +18,7 @@ public:
 	//single parameter constructor
 	KSArray(size_type theSize);
 	//two parameter constructor
-	KSArray(value_type param, size_type theSize);
+	KSArray(size_type theSize, value_type val);
 	//copy constructor
 	KSArray(const KSArray & toCopy);
 	//retrieve the size 
@@ -56,7 +56,7 @@ KSArray<at>::KSArray(size_type theSize)
 {}
 
 template <class at>
-KSArray<at>::KSArray(value_type val, size_type theSize)
+KSArray<at>::KSArray( size_type theSize, value_type val)
 	:_arrayPtr(new value_type[theSize]), _arraySize(theSize)
 {
 	for(int i=0; i<_arraySize; i++)
@@ -145,21 +145,21 @@ KSArray<at> & KSArray<at>::operator=(const KSArray<at> & rhs)
 template <class at> 
 bool operator==(const KSArray<at>& lhs, const KSArray<at>& rhs)
 {	
-	bool comp = false;
+	
+	if (lhs.size() != rhs.size())
+		return false;
 
-	if (lhs.size() == rhs.size())
+	int i = 0;
+
+	while (i < lhs.size())
 	{
-		for (int i=0; i< lhs.size(); i++)
-		{
-			if (lhs[i] == rhs[i])
-			{
-				comp = true;
-			}
-		}
+		if (lhs[i] != rhs[i])
+			return false;
+
+		i++;
 	}
 
-	return(comp);
-
+	return true;
 }
 
 template <class at> 
@@ -171,7 +171,51 @@ bool operator != (const KSArray<at>& lhs, const KSArray<at>& rhs)
 template <class at>
 bool operator<(const KSArray<at>& lhs, const KSArray<at>& rhs)
 {
-	bool comp=false;
+
+	if (lhs == rhs)
+		return false;
+
+	for(int i=0; i<lhs.size(); i++)
+	{
+		if (i > rhs.size()-1) 
+		{
+			return false;
+		}
+
+		if (lhs[i] < rhs[i]) 
+		{
+			return true;
+		}  
+		else if (lhs[i]> rhs[i]) 
+		{ 
+			return false;
+		}
+
+
+	} 
+
+	if (rhs.size() > lhs.size()) 
+	{
+		return true;
+	}
+
+
+	return false;
+
+	/*for(int i=0; i<lhs.size(); i++)
+	{
+			if (lhs[i] > rhs[i])
+				return false;
+ 
+			if (lhs[i] < rhs[i])
+				return true;
+
+	} */
+	//if we've made it this far and have run out of values on the right hand side
+	// the rhs must be smaller so we return false.
+	//return false;
+
+	/*bool comp=false;
 
 	for (int i=0; i<lhs.size(); i++)
 	{
@@ -179,9 +223,10 @@ bool operator<(const KSArray<at>& lhs, const KSArray<at>& rhs)
 		{
 			comp = true;
 		}
+		else comp = false;
 	}
 
-	return comp;
+	return comp;*/
 }
 
 template <class at>

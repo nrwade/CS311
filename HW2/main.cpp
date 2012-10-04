@@ -77,7 +77,10 @@ int main() {
 	cout << "x= " << x << endl;
 	cout << "y= " << y << endl;*/
 
-	/*cout << "ia9 " << ia9.size() << " "<< *ia9.begin()<< endl;
+	/*KSArray<char> ia9 = KSArray<char>('b', 5);
+	KSArray<char> ia10 = KSArray<char>('b', 5);
+
+	cout << "ia9 " << ia9.size() << " "<< *ia9.begin()<< endl;
 	cout << "ia10 " << ia10.size() << " " << *ia10.begin() << endl;
 
 	if (ia10 == ia9)
@@ -88,6 +91,22 @@ int main() {
 	{
 		cout << "fuuuuck" << endl;
 	}*/
+
+	KSArray<int> tai1(theSize);
+    for (int i = 0; i < theSize; ++i)
+        tai1[i] = 15 - i * i;
+    const KSArray<int> & tai1Ref = tai1;
+    KSArray<int> tai1Copy(tai1Ref);
+
+    if (tai1==tai1Copy)
+    	cout << "they are equal" << endl;
+    else
+    	cout << "not working\n";
+
+     if (!(tai1!=tai1Copy))
+    	cout << "they are equal" << endl;
+    else
+    	cout << "not working\n";
 
 	/*cout<< "the size of array ia5 is "<<ia5.size() << endl;
 
